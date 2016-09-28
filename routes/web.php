@@ -15,6 +15,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('movies', function() {
+    return view('moviesOverview');
+});
+
+Route::get('account', function() {
+    return view('myAccount');
+});
+
+
+
 //Echo name given in url
 Route::get('hello/{name}', function($name) {
     echo 'hello ' . $name;
