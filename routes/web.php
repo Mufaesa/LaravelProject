@@ -15,9 +15,41 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('test', function () {
-    echo 'test';
+//Echo name given in url
+Route::get('hello/{name}', function($name) {
+    echo 'hello ' . $name;
 });
+
+//Echo name of a random user from database
+Route::get('randomUser', function() {
+    $user = App\User::all();
+    echo $user->random()->name;
+});
+
+//create an item
+Route::post('test', function (){
+    echo "You just hit the submit button";
+});
+
+//read an item
+Route::get('test', function(){
+    echo '<form action="test" method="POST">';
+    echo '<input type="submit">';
+    echo '<input type="hidden" value="' . csrf_token() . '" name="_token">';
+    echo '<input type="hidden" name="_method" value="POST">';
+    echo '</form>';
+});
+
+//update an item
+Route::put('test', function (){
+    echo "You just read the submit button";
+});
+
+//delete an item
+Route::delete('test', function (){
+    echo "You just deleted the submit button";
+});
+
 
 Auth::routes();
 
