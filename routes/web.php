@@ -11,9 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+Route::get('/', ['as' => 'home.index', 'uses' => 'movieOverviewController@index']);
 
 Route::get('movies', function() {
     return view('moviesOverview');
@@ -22,6 +24,8 @@ Route::get('movies', function() {
 Route::get('account', function() {
     return view('myAccount');
 });
+
+Route::get('movies/{id}', 'AdminController@getPackingSlip');
 
 
 
