@@ -27,7 +27,9 @@ Route::get('account', function() {
 
 Route::get('movieDetails/{id}', 'movieDetailController@getID');
 
-
+Route::get('movieInsert', function() {
+    return view('movieInsert');
+});
 
 //Echo name given in url
 Route::get('hello/{name}', function($name) {

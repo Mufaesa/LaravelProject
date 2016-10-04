@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use DB;
 
-use App\movieOverview;
 use App\Movies;
 
 class movieDetailController extends Controller
