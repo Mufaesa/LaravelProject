@@ -25,7 +25,7 @@ Route::get('account', function() {
     return view('myAccount');
 });
 
-Route::get('movies/{id}', 'AdminController@getPackingSlip');
+Route::get('movieDetails/{id}', 'movieDetailController@getID');
 
 
 
