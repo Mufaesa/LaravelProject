@@ -11,11 +11,13 @@
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
-
 Route::get('/', ['as' => 'home.index', 'uses' => 'movieOverviewController@index']);
+
+Route::get('movieEdit',  'movieOverviewController@editPage');
+
+Route::get('addMovie',   'movieOverviewController@addMovie');
+
+Route::get('movieDetails/{id}', 'movieDetailController@getID');
 
 Route::get('movies', function() {
     return view('moviesOverview');
@@ -25,11 +27,15 @@ Route::get('account', function() {
     return view('myAccount');
 });
 
-Route::get('movieDetails/{id}', 'movieDetailController@getID');
-
 Route::get('movieInsert', function() {
     return view('movieInsert');
 });
+
+
+
+
+
+
 
 //Echo name given in url
 Route::get('hello/{name}', function($name) {

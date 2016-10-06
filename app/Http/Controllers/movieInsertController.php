@@ -13,11 +13,6 @@ class movieInsertController extends Controller
 {
     public function addMovie()
     {
-        DB::table('movies')->insert(
-            ['name' => 'john@example.com']
-            ['description' => 'john@example.com']
-        ['director' => 'john@example.com']
-        ['image' => 'john@example.com']
-        );
+
     }
 }
