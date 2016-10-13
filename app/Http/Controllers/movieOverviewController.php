@@ -1,60 +1,76 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Requests\movieRequest;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
+use App\Movies;
+use DB;
 
-use App\movies;
 
 class movieOverviewController extends Controller
 {
-    public function index(){
-
+    public function index()
+    {
         //Show all the data from the "movies" table
-        $movies = movies::all();
+        $movies = Movies::all();
         
         return view('moviesOverview',['movies' => $movies]);
     }
-    
-    public function editPage(){
-        $movies = movies::all();
+
+
+    public function getID($movie_id)
+    {
+        $results = DB::table('movies')
+            ->where('id', '=', $movie_id)
+            ->get();
+
+        return view('movieDetails')->with('results', $results);
+    }
+
+
+    public function goToEditPage()
+    {
+        $movies = Movies::all();
         
         return view('movieEdit',['movies' => $movies]);
     }
 
-   public function addMovie(){
-       return view('addMovie');
+
+    public function editMovie($movie_id)
+    {
+        $results = DB::table('movies')
+            ->where('id', '=', $movie_id)
+            ->get();
+
+        return view('editMovie')->with('results', $results);
+
+    }
+
+
+   public function create()
+   {
+       return view('create');
    }
 
-    public function storeMovie()
+
+    public function store(movieRequest $request)
     {
-        // validate
-        $rules = array(
-            'name'       => 'required',
-            'email'      => 'required|email',
-            'nerd_level' => 'required|numeric'
-        );
-        $validator = Validator::make(Input::all(), $rules);
+//        return $request->all();
 
-        // process the login
-        if ($validator->fails()) {
-            return Redirect::to('nerds/create')
-                ->withErrors($validator)
-                ->withInput(Input::except('password'));
-        } else {
-            // store
-            $nerd = new Nerd;
-            $nerd->name       = Input::get('name');
-            $nerd->email      = Input::get('email');
-            $nerd->nerd_level = Input::get('nerd_level');
-            $nerd->save();
+//        $input = $request::all();
+//
+//        Movies::create($request->all());
 
-            // redirect
-            Session::flash('message', 'Successfully created nerd!');
-            return Redirect::to('nerds');
-        }
+        $newMovie = new Movies;
+        $newMovie->name = $request->title;
+        $newMovie->description = $request->description;
+        $newMovie->director = $request->director;
+        $newMovie->image = "";
+
+        $newMovie->save();
+
+        return redirect('/');
     }
 
 }

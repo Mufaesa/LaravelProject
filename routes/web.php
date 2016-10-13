@@ -13,15 +13,9 @@
 
 Route::get('/', ['as' => 'home.index', 'uses' => 'movieOverviewController@index']);
 
-Route::get('movieEdit',  'movieOverviewController@editPage');
+Route::get('movieEdit',  'movieOverviewController@goToEditPage');
 
-Route::get('addMovie',   'movieOverviewController@addMovie');
-
-Route::get('movieDetails/{id}', 'movieDetailController@getID');
-
-Route::get('movies', function() {
-    return view('moviesOverview');
-});
+Route::get('create',   'movieOverviewController@create');
 
 Route::get('account', function() {
     return view('myAccount');
@@ -30,6 +24,14 @@ Route::get('account', function() {
 Route::get('movieInsert', function() {
     return view('movieInsert');
 });
+
+Route::post('movies', 'movieOverviewController@store');
+
+Route::get('movieDetails/{id}', 'movieOverviewController@getID');
+
+Route::get('movieDetails/{id}/edit', 'movieOverviewController@editMovie');
+
+
 
 
 

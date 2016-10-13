@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="col-md-8 col-md-offset-2">
+        <h1>All movies</h1>
     <div class="panel-body">
         @foreach($movies as $movie)
             <h2>{{ $movie->name }}</h2>

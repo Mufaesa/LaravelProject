@@ -1,3 +1,4 @@
+{{--For admins only, shows a page with all movies with an extra edit button, linked to a page for editing details.--}}
 @extends('layouts.app')
 
 @section('content')
