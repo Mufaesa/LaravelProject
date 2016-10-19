@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Movies;
 use DB;
+use Illuminate\Support\Facades\App;
 
 
 class movieOverviewController extends Controller
@@ -53,14 +54,32 @@ class movieOverviewController extends Controller
        return view('create');
    }
 
+    public function deleteMovie ($movie_id)
+    {
+
+        $deletedMovie = Movies::find($movie_id);
+
+        $deletedMovie->delete();
+
+        return redirect('/');
+    }
+
+    public function updateMovie($movie_id, movieRequest $request)
+    {
+
+        $updatedMovie = Movies::find($movie_id);
+        $updatedMovie ->name = $request->title;
+        $updatedMovie->description = $request->description;
+        $updatedMovie->director = $request->director;
+
+        $updatedMovie->save();
+
+        return redirect('/');
+    }
+
 
     public function store(movieRequest $request)
     {
-//        return $request->all();
-
-//        $input = $request::all();
-//
-//        Movies::create($request->all());
 
         $newMovie = new Movies;
         $newMovie->name = $request->title;

@@ -1,4 +1,4 @@
-{{--Only for admins, shows a form with all current information, used to edit the details of this movie.--}}
+{{--Only for admins, shows a form that allows admins to add new movies to the database.--}}
 @extends('layouts.app')
 
 @section('content')

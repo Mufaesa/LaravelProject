@@ -6,16 +6,41 @@
     <h1>Edit this movie</h1>
     @foreach ($results as $result)
         <table>
-            {{ Form::open(array('url'=>'form-submit')) }}
+
+            {{ Form::open(['url' => 'update/'.$result->id])}}
 
             <td><img src="{{ asset($result->image) }}"/></td>
-            <td>{{ Form::text('title', $result->name) }}</td>
-            <td>{{ Form::textarea('title', $result->description) }}</td>
-            <td>{{ Form::text('title', $result->director) }}</td>
 
-            <td>{{ Form::submit() }}</td>
+            <div class="form-group">
+                {{ Form::label('title', 'Title:') }}
+                {{ Form::text('title', $result->name, ['class' => 'form-control']) }}
+            </div>
 
-            {{ Form::close() }}
+            <div class="form-group">
+                {{ Form::label('description', 'Description:') }}
+                {{ Form::textarea('description', $result->description, ['class' => 'form-control']) }}
+            </div>
+
+            <div class="form-group">
+                {{ Form::label('director', 'Director:') }}
+                {{ Form::text('director', $result->director, ['class' => 'form-control']) }}
+            </div>
+
+            <div class="form-group">
+                {{ Form::submit('Update movie', ['class' => 'btn btn-primary form-control']) }}
+            </div>
+
+            {{ Form::close()}}
+
+
+
+            {{ Form::open(['url' => 'delete/'.$result->id])}}
+
+            <div class="form-group">
+                {{ Form::submit('Or delete this movie', ['class' => 'btn btn-primary form-control']) }}
+            </div>
+
+            {{ Form::close()}}
         </table>
     @endforeach
 

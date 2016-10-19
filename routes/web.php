@@ -27,6 +27,10 @@ Route::get('movieInsert', function() {
 
 Route::post('movies', 'movieOverviewController@store');
 
+Route::post('update/{id}', 'movieOverviewController@updateMovie');
+
+Route::post('delete/{id}', 'movieOverviewController@deleteMovie');
+
 Route::get('movieDetails/{id}', 'movieOverviewController@getID');
 
 Route::get('movieDetails/{id}/edit', 'movieOverviewController@editMovie');
