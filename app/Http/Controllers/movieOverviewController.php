@@ -14,6 +14,7 @@ class movieOverviewController extends Controller
     public function index()
     {
         //Show all the data from the "movies" table
+
         $movies = Movies::all();
         
         return view('moviesOverview',['movies' => $movies]);
