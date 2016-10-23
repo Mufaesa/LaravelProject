@@ -11,17 +11,21 @@ use Illuminate\Support\Facades\App;
 
 class movieOverviewController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'getID']]);
+    }
+
     public function index()
     {
-        //Show all the data from the "movies" table
-
         $movies = Movies::all();
-        
-        return view('moviesOverview',['movies' => $movies]);
+
+        return view('moviesOverview', ['movies' => $movies]);
     }
 
 
-    public function getID($movie_id)
+    public function movieDetails($movie_id)
     {
         $results = DB::table('movies')
             ->where('id', '=', $movie_id)
@@ -33,9 +37,11 @@ class movieOverviewController extends Controller
 
     public function goToEditPage()
     {
+
         $movies = Movies::all();
-        
-        return view('movieEdit',['movies' => $movies]);
+
+        return view('movieEdit', ['movies' => $movies]);
+
     }
 
 
@@ -50,12 +56,12 @@ class movieOverviewController extends Controller
     }
 
 
-   public function create()
-   {
-       return view('create');
-   }
+    public function create()
+    {
+        return view('create');
+    }
 
-    public function deleteMovie ($movie_id)
+    public function deleteMovie($movie_id)
     {
 
         $deletedMovie = Movies::find($movie_id);
@@ -69,7 +75,7 @@ class movieOverviewController extends Controller
     {
 
         $updatedMovie = Movies::find($movie_id);
-        $updatedMovie ->name = $request->title;
+        $updatedMovie->name = $request->title;
         $updatedMovie->description = $request->description;
         $updatedMovie->director = $request->director;
 

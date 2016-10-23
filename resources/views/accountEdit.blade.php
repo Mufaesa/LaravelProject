@@ -18,6 +18,7 @@
                 {{ Form::label('email', 'Email:') }}
                 {{ Form::textarea('email', $result->email, ['class' => 'form-control']) }}
             </div>
+
             <br>
             <div class="form-group">
                 {{ Form::submit('Update my account', ['class' => 'btn btn-primary form-control']) }}

@@ -7,6 +7,7 @@
     <div class="col-md-8 col-md-offset-2">
         <div class="panel-body">
             <h1>All the movies</h1>
+            <a href="{{ url('/create') }}" class="btn btn-mini btn-primary"><h3>Add a new movie</h3></a>
             @foreach($movies as $movie)
                 <h2>{{ $movie->name }}</h2>
                 {{--<p>{{ $movie->description }}</p>--}}

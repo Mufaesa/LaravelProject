@@ -32,7 +32,10 @@
 
             {{ Form::close()}}
 
-
+            <br>
+            <br>
+            <br>
+            <br>
 
             {{ Form::open(['url' => 'delete/'.$result->id])}}
 

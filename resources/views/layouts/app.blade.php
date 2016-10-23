@@ -65,6 +65,7 @@
                                         Logout
                                     </a>
                                 <li><a href="{{ url('/account') }}">My account</a></li>
+                                <li><a href="{{ url('/movieEdit') }}">Manage movies</a></li>
 
                                     <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                                         {{ csrf_field() }}

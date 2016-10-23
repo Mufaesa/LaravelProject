@@ -21,6 +21,18 @@ Route::get('account',   'userController@myAccount');
 
 Route::get('accountEdit/{id}', 'userController@updateAccount');
 
+Route::get('movieDetails/{id}', 'movieOverviewController@movieDetails');
+
+Route::get('movieDetails/{id}/edit', 'movieOverviewController@editMovie');
+
+Route::get('search', 'userController@search');
+
+Route::get('userView', 'userController@userOverview');
+
+Route::post('queries', array('as'=>'queries', function(){
+    return view('search');
+}));
+
 Route::get('movieInsert', function() {
     return view('movieInsert');
 });
@@ -32,10 +44,6 @@ Route::post('movies', 'movieOverviewController@store');
 Route::post('update/{id}', 'movieOverviewController@updateMovie');
 
 Route::post('delete/{id}', 'movieOverviewController@deleteMovie');
-
-Route::get('movieDetails/{id}', 'movieOverviewController@getID');
-
-Route::get('movieDetails/{id}/edit', 'movieOverviewController@editMovie');
 
 Auth::routes();
 
