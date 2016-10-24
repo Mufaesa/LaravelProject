@@ -5,7 +5,7 @@
         <h1>All users</h1>
         <div class="panel-body">
 
-            {!! Form::open(array('route' => 'queries', 'class'=>'form navbar-form navbar-left searchform')) !!}
+            {!! Form::open(array('url' => 'queries/', 'class'=>'form navbar-form navbar-left searchform')) !!}
             {!! Form::text('search', null,
             array('required',
             'class'=>'form-control',
@@ -13,6 +13,7 @@
 
             {!! Form::submit('Search',
             array('class'=>'btn btn-default')) !!}
+            {{ method_field('post') }}
             {!! Form::close() !!}
             <br>
             <br>

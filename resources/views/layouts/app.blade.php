@@ -58,19 +58,20 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/account') }}">My account</a></li>
+                                <li><a href="{{ url('/movieEdit') }}">Manage movies</a></li>
                                 <li>
                                     <a href="{{ url('/logout') }}"
                                         onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
                                         Logout
                                     </a>
-                                <li><a href="{{ url('/account') }}">My account</a></li>
-                                <li><a href="{{ url('/movieEdit') }}">Manage movies</a></li>
 
                                     <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                                         {{ csrf_field() }}
                                     </form>
                                 </li>
+
                             </ul>
                         </li>
                     @endif

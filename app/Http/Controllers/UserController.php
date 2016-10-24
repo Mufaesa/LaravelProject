@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 use App\Http\Requests\userRequest;
-use Request;
 use App\Http\Requests;
 use App\User;
 use DB;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 
 class UserController extends Controller
@@ -62,13 +62,16 @@ class UserController extends Controller
         return redirect('account');
     }
 
+   
     public function search(Request $request)
     {
-        $query = Request::input('search');
+        $result = $request->input('search');
 
-        $users = DB::table('users')->where('title', 'LIKE', '%' . $query . '%')->paginate(10);
-        
-        return view('search', compact(['users', 'query']));
+//        return view('search', compact('result'));
+
+        $users = DB::table('users')->where('name', 'LIKE', '%' . $result . '%')->paginate(10);
+
+        return view('search', compact('users'));
     }
 
 }

@@ -29,9 +29,7 @@ Route::get('search', 'userController@search');
 
 Route::get('userView', 'userController@userOverview');
 
-Route::post('queries', array('as'=>'queries', function(){
-    return view('search');
-}));
+Route::post('queries', 'UserController@search');
 
 Route::get('movieInsert', function() {
     return view('movieInsert');
