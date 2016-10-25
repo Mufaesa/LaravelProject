@@ -11,6 +11,10 @@
                 @foreach($users as $user)
                     <h3>{{$user->name}} </h3>
                     <h4>{{$user->email}}</h4>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <div class="slider round"></div>
+                    </label>
                     <br>
                 @endforeach
             @endif

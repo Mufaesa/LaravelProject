@@ -31,6 +31,8 @@ Route::get('userView', 'userController@userOverview');
 
 Route::post('queries', 'UserController@search');
 
+Route::post('toggleUser/{id}', 'UserController@toggleUser');
+
 Route::get('movieInsert', function() {
     return view('movieInsert');
 });

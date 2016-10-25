@@ -67,11 +67,24 @@ class UserController extends Controller
     {
         $result = $request->input('search');
 
-//        return view('search', compact('result'));
-
         $users = DB::table('users')->where('name', 'LIKE', '%' . $result . '%')->paginate(10);
 
         return view('search', compact('users'));
+    }
+
+    public function toggleUser($user_id)
+    {
+        $updatedAccount = User::find($user_id);
+
+        if($updatedAccount->role === 1){
+            $updatedAccount->role = 2;
+        } else {
+            $updatedAccount->role = 1;
+        }
+
+        $updatedAccount->save();
+        
+        return redirect('userView');
     }
 
 }
