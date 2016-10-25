@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Http\Requests\userRequest;
 use App\Http\Requests;
 use App\User;
@@ -15,19 +16,19 @@ class UserController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function userOverview()
     {
         $results = User::all();
 
         return view('userView')->with('results', $results);
     }
-    
+
 
     public function myAccount()
     {
-        $user=\Auth::user();
-        
+        $user = \Auth::user();
+
         return view('myAccount')->with('user', $user);
     }
 
@@ -50,10 +51,15 @@ class UserController extends Controller
         return view('accountEdit')->with('results', $results);
     }
 
-    public function store($user_id, userRequest $request){
+    public function store($user_id, userRequest $request)
+    {
 
         $updatedAccount = User::find($user_id);
-        $updatedAccount ->name = $request->name;
+        
+        if ($request->has('image')) {
+            $updatedAccount->image = 'images/' . $request->image;
+        }
+        $updatedAccount->name = $request->name;
         $updatedAccount->email = $request->email;
 
 
@@ -62,7 +68,7 @@ class UserController extends Controller
         return redirect('account');
     }
 
-   
+
     public function search(Request $request)
     {
         $result = $request->input('search');
@@ -76,14 +82,14 @@ class UserController extends Controller
     {
         $updatedAccount = User::find($user_id);
 
-        if($updatedAccount->role === 1){
+        if ($updatedAccount->role === 1) {
             $updatedAccount->role = 2;
         } else {
             $updatedAccount->role = 1;
         }
 
         $updatedAccount->save();
-        
+
         return redirect('userView');
     }
 

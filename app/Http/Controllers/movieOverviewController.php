@@ -73,8 +73,10 @@ class movieOverviewController extends Controller
 
     public function updateMovie($movie_id, movieRequest $request)
     {
-
         $updatedMovie = Movies::find($movie_id);
+        if ($request->has('image')) {
+            $updatedMovie->image = 'images/' . $request->image;
+        }
         $updatedMovie->name = $request->title;
         $updatedMovie->description = $request->description;
         $updatedMovie->director = $request->director;
@@ -89,14 +91,16 @@ class movieOverviewController extends Controller
     {
 
         $newMovie = new Movies;
+        if ($request->has('image')) {
+            $newMovie->image = 'images/' . $request->image;
+        }
         $newMovie->name = $request->title;
         $newMovie->description = $request->description;
         $newMovie->director = $request->director;
-        $newMovie->image = "";
 
         $newMovie->save();
 
-        return redirect('/');
+        return redirect('movieEdit');
     }
 
 }

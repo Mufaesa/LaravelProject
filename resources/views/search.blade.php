@@ -11,10 +11,21 @@
                 @foreach($users as $user)
                     <h3>{{$user->name}} </h3>
                     <h4>{{$user->email}}</h4>
-                    <label class="switch">
-                        <input type="checkbox">
-                        <div class="slider round"></div>
-                    </label>
+                    @if($user->role === 2)
+                        <form action="toggleUser/{{$user->id}}" method="post">
+                            <div class="toggle-button toggle-button-selected">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <button class="toggle-button-selected"></button>
+                            </div>
+                        </form>
+                    @else
+                        <form action="toggleUser/{{$user->id}}" method="post">
+                            <div class="toggle-button">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <button></button>
+                            </div>
+                        </form>
+                    @endif
                     <br>
                 @endforeach
             @endif

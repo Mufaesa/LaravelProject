@@ -7,7 +7,6 @@
 
     </hr>
 
-    {{--{{ Form::open(array('action' => 'movieOverviewController@store'))}}--}}
     {{ Form::open(['url' => 'movies'])}}
 
     <div class="form-group">
@@ -23,6 +22,11 @@
     <div class="form-group">
         {{ Form::label('director', 'Director:') }}
         {{ Form::text('director', null, ['class' => 'form-control']) }}
+    </div>
+
+    <div class="form-group">
+        {{ Form::label('image', 'Image:') }}
+        {{ Form::file('image', ['class' => 'form-control']) }}
     </div>
 
     <div class="form-group">

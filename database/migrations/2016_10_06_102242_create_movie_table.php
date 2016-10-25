@@ -18,7 +18,7 @@ class CreateMovieTable extends Migration
             $table->string('name');
             $table->string('description', 1000);
             $table->string('director');
-            $table->string('image');
+            $table->string('image')->default('images/defaultMovie.jpg');
             $table->timestamps();
         });
     }

@@ -19,6 +19,11 @@
                 {{ Form::textarea('email', $result->email, ['class' => 'form-control']) }}
             </div>
 
+            <div class="form-group">
+                {{ Form::label('image', 'Image:') }}
+                {{ Form::file('image', ['class' => 'form-control']) }}
+            </div>
+
             <br>
             <div class="form-group">
                 {{ Form::submit('Update my account', ['class' => 'btn btn-primary form-control']) }}
