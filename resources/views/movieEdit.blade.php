@@ -6,15 +6,26 @@
 
     <div class="col-md-8 col-md-offset-2">
         <div class="panel-body">
-            <h1>All the movies</h1>
-            <a href="{{ url('/create') }}" class="btn btn-mini btn-primary"><h3>Add a new movie</h3></a>
-            @foreach($movies as $movie)
-                <h2>{{ $movie->name }}</h2>
-                {{--<p>{{ $movie->description }}</p>--}}
-                <a href="{{ URL::to('movieDetails/' . $movie->id) }}" class="btn btn-mini btn-primary"><img src="{{ asset($movie->image) }}"/></a>
-                <a class="btn btn-small btn-info" href="{{ URL::to('movieDetails/' . $movie->id . '/edit') }}">Edit this movie</a>
+            @if (Session::has('status'))
+                <div class="alert alert-success">{{Session::get('status')}}</div>
+            @endif
+            <h1>All movies</h1>
 
-                <hr>
+            <br>
+
+            @foreach($movies as $movie)
+                <div class="movieArea">
+                    <h2>{{ $movie->name }}</h2>
+                    {{--<p>{{ $movie->description }}</p>--}}
+                    <a href="{{ URL::to('movieDetails/' . $movie->id) }}" class="btn btn-mini btn-primary"><img src="{{ asset($movie->image) }}" height="390px" width="265px"/></a>
+                    <a class="submitButton" href="{{ URL::to('movieDetails/' . $movie->id . '/edit') }}">Edit this movie</a>
+                    {{ Form::open(['url' => 'delete/'.$movie->id])}}
+
+                    {{ Form::submit('Delete this movie', ['class' => 'submitButton']) }}
+
+                    {{ Form::close()}}
+                    <hr>
+                </div>
             @endforeach
         </div>
     </div>

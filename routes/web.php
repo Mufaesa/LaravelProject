@@ -11,39 +11,33 @@
 |
 */
 
+//Home
 Route::get('/', ['as' => 'home.index', 'uses' => 'movieOverviewController@index']);
-
-Route::get('movieEdit',  'movieOverviewController@goToEditPage');
-
-Route::get('create',   'movieOverviewController@create');
-
-Route::get('account',   'userController@myAccount');
-
-Route::get('accountEdit/{id}', 'userController@updateAccount');
-
 Route::get('movieDetails/{id}', 'movieOverviewController@movieDetails');
 
+//Movie controls
+Route::get('movieEdit',  'movieOverviewController@goToEditPage');
+Route::get('create',   'movieOverviewController@create');
 Route::get('movieDetails/{id}/edit', 'movieOverviewController@editMovie');
-
-Route::get('search', 'userController@search');
-
-Route::get('userView', 'userController@userOverview');
-
-Route::post('queries', 'UserController@search');
-
-Route::post('toggleUser/{id}', 'UserController@toggleUser');
-
+Route::post('movies', 'movieOverviewController@store');
+Route::post('update/{id}', 'movieOverviewController@updateMovie');
+Route::post('delete/{id}', 'movieOverviewController@deleteMovie');
 Route::get('movieInsert', function() {
     return view('movieInsert');
 });
 
+//User controls
+Route::get('account',   'userController@myAccount');
+Route::get('accountEdit/{id}', 'userController@updateAccount');
 Route::post('updateUser/{id}', 'userController@store');
 
-Route::post('movies', 'movieOverviewController@store');
+//User overview controls
+Route::get('search', 'userController@search');
+Route::get('userView', 'userController@userOverview');
+Route::post('queries', 'UserController@search');
+Route::post('toggleUser/{id}', 'UserController@toggleUser');
 
-Route::post('update/{id}', 'movieOverviewController@updateMovie');
 
-Route::post('delete/{id}', 'movieOverviewController@deleteMovie');
 
 Auth::routes();
 

@@ -1,15 +1,14 @@
+{{--Page that shows every current active user. Only for the person with email adress "tomvrijmoet@hotmail.com".--}}
 @extends('layouts.app')
 
 @section('content')
     <head>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script>
-            $(document).on('click', '.toggle-button', function () {
-                $(this).toggleClass('toggle-button-selected');
-            });
-        </script>
+
     </head>
     <div class="col-md-8 col-md-offset-2">
+        @if (Session::has('status'))
+            <div class="alert alert-success">{{Session::get('status')}}</div>
+        @endif
         <h1>All users</h1>
         <div class="panel-body">
 
@@ -19,15 +18,40 @@
             'class'=>'form-control',
             'placeholder'=>'Search for a specific user')) !!}
 
+            <br>
+            Search on:
+            <br>
+            Name:
+            {!! Form::radio('filter', 'name', true, ['class' => 'form-control']) !!}
+            <br>
+            email:
+            {!! Form::radio('filter', 'email', false, ['class' => 'form-control']) !!}
+            <br>
+            All:
+            {!! Form::radio('filter', '*', false, ['class' => 'form-control']) !!}
+            <br>
+
             {!! Form::submit('Search',
             array('class'=>'btn btn-default')) !!}
             {{ method_field('post') }}
+
             {!! Form::close() !!}
+
             <br>
             <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
             @foreach($results as $user)
 
                 <h3>{{$user->name}}</h3>
+
                 <h4>{{$user->email}}</h4>
 
                 @if($user->role === 2)
@@ -45,10 +69,17 @@
                         </div>
                     </form>
                 @endif
-
+                <br>
             @endforeach
 
         </div>
     </div>
 
 @endsection
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    $(document).on('click', '.toggle-button', function () {
+        $(this).toggleClass('toggle-button-selected');
+    });
+</script>

@@ -15,7 +15,7 @@
 
     <!-- Scripts -->
     <script>
-        window.Laravel = <?php echo json_encode([
+        window.Laravel =<?php echo json_encode([
                 'csrfToken' => csrf_token(),
         ]); ?>
     </script>
@@ -35,7 +35,7 @@
 
             <!-- Branding Image -->
             <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Laravel') }}
+                {{ config('app.name', 'Arcaflex') }}
             </a>
         </div>
 
@@ -47,7 +47,15 @@
 
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
-                <!-- Authentication Links -->
+                @if (Auth::guest())
+
+                @else
+                    @if (Auth::user()->role === 2)
+
+                        <li><a href="{{ url('/create') }}"><i class="fa fa-plus" aria-hidden="true"></i> Add movie</a></li>
+                    @endif
+                @endif
+            <!-- Authentication Links -->
                 @if (Auth::guest())
                     <li><a href="{{ url('/login') }}">Login</a></li>
                     <li><a href="{{ url('/register') }}">Register</a></li>
@@ -58,19 +66,22 @@
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ url('/account') }}">My account</a></li>
+                            <li><a href="{{ url('/account') }}"><i class="fa fa-user" aria-hidden="true"></i> My account</a></li>
 
                             {{--Check if the user has admin rights, if so, add administrator links to dropdown menu.--}}
                             @if (Auth::user()->role === 2)
-                                <li><a href="{{ url('/movieEdit') }}">Manage movies</a></li>
-                                <li><a href="{{ url('/userView') }}">Manage users</a></li>
+                                <li><a href="{{ url('/movieEdit') }}"><i class="fa fa-film" aria-hidden="true"></i> Manage movies</a></li>
+                                @if (Auth::user()->email === 'tomvrijmoet@hotmail.com')
+
+                                    <li><a href="{{ url('/userView') }}"><i class="fa fa-users" aria-hidden="true"></i> Manage users</a></li>
+                                @endif
                             @endif
 
                             <li>
                                 <a href="{{ url('/logout') }}"
                                    onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
-                                    Logout
+                                    <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
                                 </a>
 
                                 <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
@@ -90,5 +101,6 @@
 
 <!-- Scripts -->
 <script src="/js/app.js"></script>
+<script src="https://use.fontawesome.com/bbfd3b9a72.js"></script>
 </body>
 </html>

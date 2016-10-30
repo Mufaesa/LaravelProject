@@ -8,14 +8,19 @@
         <h1>About this movie</h1>
         <div class="panel-body">
             @foreach ($results as $result)
-                <table>
+                <div class="moviePoster">
+                    <img src="{{ asset($result->image) }}" height="500px" width="325px"/>
+                </div>
+                <h3>Name:</h3>
+                <h2>{{$result->name}}</h2>
+                <br>
+                <h3>Description:</h3>
+                <h4>{{$result->description}}</h4>
+                <br>
+                <h3>Director:</h3>
+                <h4>{{$result->director}}</h4>
 
-                    <td><img src="{{ asset($result->image) }}"/></td>
-                    <td>{{$result->name}}</td>
-                    <td>{{$result->description}}</td>
-                    <td>{{$result->director}}</td>
 
-                </table>
             @endforeach
         </div>
     </div>
